@@ -1,9 +1,10 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { GET_PRODUCTS } from '../graphql/queries';
-import { useOrder } from '../context/OrderContext';
-import ProductCard from './ProductCard';
-import styled from 'styled-components';
+import { GET_PRODUCTS } from '../../graphql/queries';
+import { useOrder } from '../../context/OrderContext';
+import ProductCard from '../card/ProductCard';
+import { ProductGrid } from './ProductList.styles';
+import LoadingErrorState from '../loading/LoadingErrorState';
 
 const ProductList: React.FC = () => {
   const { loading, error, data } = useQuery(GET_PRODUCTS);
@@ -23,8 +24,8 @@ const ProductList: React.FC = () => {
     addItem(item);
   };
 
-  if (loading) return <div>Loading products...</div>;
-  if (error) return <div>Error loading products</div>;
+  if (loading) return <LoadingErrorState message="Loading products..." />;
+  if (error) return <LoadingErrorState message="Error loading products" />;
 
   return (
     <ProductGrid>
@@ -38,13 +39,5 @@ const ProductList: React.FC = () => {
     </ProductGrid>
   );
 };
-
-const ProductGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  justify-items: center;
-`;
 
 export default ProductList;

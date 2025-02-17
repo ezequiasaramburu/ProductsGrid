@@ -1,18 +1,7 @@
-import { Header } from './components/Header';
-import { OrderProvider } from './context/OrderProvider';
-import ProductList from './components/ProductList';
+import HomePage from './pages/HomePage';
 
 function App() {
-  return (
-    <OrderProvider>
-      <>
-        <Header></Header>
-        <div>
-          <ProductList />
-        </div>
-      </>
-    </OrderProvider>
-  );
+  return <HomePage />;
 }
 
 export default App;
