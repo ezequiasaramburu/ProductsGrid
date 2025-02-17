@@ -24,8 +24,15 @@ export const OrderProvider: React.FC<OrderProviderProps> = ({ children }) => {
     setSubtotal(subtotal + item.price);
   };
 
+  const clearOrder = () => {
+    setItems([]);
+    setSubtotal(0);
+    localStorage.removeItem('order-items');
+    localStorage.removeItem('order-subtotal');
+  };
+
   return (
-    <OrderContext.Provider value={{ items, subtotal, addItem }}>
+    <OrderContext.Provider value={{ items, subtotal, addItem, clearOrder }}>
       {children}
     </OrderContext.Provider>
   );
