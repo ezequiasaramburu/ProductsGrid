@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useOrder } from '../context/OrderContext';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const HeaderContainer = styled.header`
   display: flex;
@@ -15,12 +16,21 @@ const Logo = styled.img`
 `;
 
 const Subtotal = styled.div`
+  margin-right: 1rem;
   font-size: 1.5rem;
   font-weight: bold;
 `;
 
+const Box = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+`;
+
 export function Header() {
-  const { subtotal } = useOrder() || {};
+  const { subtotal, clearOrder } = useOrder() || {};
 
   return (
     <HeaderContainer>
@@ -28,7 +38,10 @@ export function Header() {
         src="https://santex.wpengine.com/wp-content/uploads/2019/02/logo-santex@3x.png"
         alt="Santex logo"
       />
-      <Subtotal>${subtotal?.toFixed(2) || 0}</Subtotal>
+      <Box>
+        <Subtotal>${subtotal?.toFixed(2) || 0}</Subtotal>
+        <DeleteIcon onClick={clearOrder} style={{ cursor: 'pointer' }} />
+      </Box>
     </HeaderContainer>
   );
 }

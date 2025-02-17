@@ -1,14 +1,17 @@
 import { Header } from './components/Header';
-import { ProductList } from './components/ProductList';
+import { OrderProvider } from './context/OrderProvider';
+import ProductList from './components/ProductList';
 
 function App() {
   return (
-    <>
-      <Header></Header>
-      <div>
-        <ProductList></ProductList>
-      </div>
-    </>
+    <OrderProvider>
+      <>
+        <Header></Header>
+        <div>
+          <ProductList />
+        </div>
+      </>
+    </OrderProvider>
   );
 }
 
