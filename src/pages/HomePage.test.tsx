@@ -2,6 +2,7 @@ import { MockedProvider } from '@apollo/client/testing';
 import { render, screen } from '@testing-library/react';
 import HomePage from './HomePage';
 import { GET_PRODUCTS } from '../graphql/queries';
+import OrderProvider from '../context/OrderProvider';
 
 const mocks = [
   {
@@ -30,7 +31,9 @@ describe('HomePage Component', () => {
   it('renders HomePage with Header and ProductList', async () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
-        <HomePage />
+        <OrderProvider>
+          <HomePage />
+        </OrderProvider>
       </MockedProvider>
     );
     expect(screen.getByAltText(/Santex logo/i)).toBeInTheDocument();

@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import { colors } from '../../theme/colors'
 
 export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: red;
+  background: ${colors.primary};
   padding: 1rem 2rem;
   box-shadow: 0 4px 2px -2px gray;
 `;
@@ -24,5 +25,5 @@ export const Box = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  color: ${colors.white};
 `;

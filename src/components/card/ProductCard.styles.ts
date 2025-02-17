@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { colors } from '../../theme/colors';
 
 export const Card = styled.div`
   display: flex;
@@ -23,40 +24,45 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%; // Ensure the content fills the remaining space
+  height: 100%;
 `;
 
 export const Price = styled.p`
   font-weight: bold;
   font-size: 1.2rem;
-  margin-top: auto; // This ensures the button stays at the bottom
+  margin-top: auto;
 `;
 
 export const Button = styled.button`
   margin-top: 16px;
   padding: 10px;
-  background-color: red;
-  color: white;
+  background-color: ${colors.primary};
+  color: ${colors.white};
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 1rem;
 
   &:hover {
-    background-color: red;
+    background-color: ${colors.secondary};
+  }
+
+  &:active {
+    transform: scale(0.98);
   }
 `;
+
 
 export const Title = styled.h3`
   font-size: 18px;
   font-weight: 600;
-  color: #333;
+  color: ${colors.text};
   margin-bottom: 8px;
 `;
 
 export const Description = styled.p`
   font-size: 14px;
-  color: #777;
+  color: ${colors.textSecondary};
   margin-bottom: 16px;
 `;
 
