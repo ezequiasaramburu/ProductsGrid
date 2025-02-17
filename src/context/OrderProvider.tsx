@@ -12,7 +12,7 @@ interface OrderProviderProps {
   children: ReactNode;
 }
 
-export const OrderProvider: React.FC<OrderProviderProps> = ({ children }) => {
+const OrderProvider: React.FC<OrderProviderProps> = ({ children }) => {
   const [items, setItems] = useStateWithStorage<Item[]>('order-items', []);
   const [subtotal, setSubtotal] = useStateWithStorage<number>(
     'order-subtotal',
