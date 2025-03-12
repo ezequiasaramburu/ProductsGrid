@@ -26,7 +26,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   - **ProductCard:** Represents an individual product and includes the "Buy" button with a mutation to add items to the order.
   - **Header:** Displays the current order subtotal and uses a custom hook to persist the subtotal through page refresh.
   - **LoadingErrorState:** Displays a loading state or error message during the fetch process.
-  
 - **Context:** The `OrderContext` handles the global state of the order, including the added products and their total price. The context is wrapped around the `App` component and is available across the app.
 
 - **Hooks:** Custom hooks like `useStateWithStorage` allow managing state with local storage support for persistent data between refreshes.
@@ -41,19 +40,23 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### Approach and Features
 
-- **GraphQL Integration:** 
+- **GraphQL Integration:**
+
   - Queries are used to fetch product data from the API using Apollo Client, and mutations like `addItemToOrder` are used to update the order with selected items.
 
 - **Order Management with Context:**
+
   - The `OrderContext` manages the order state (i.e., the products added and the subtotal). It allows the app to persist the state even after a page refresh.
 
 - **Custom Hook with Local Storage:**
+
   - The `useStateWithStorage` hook mimics the API of `useState` but adds functionality to persist the state in local storage. This is useful for the subtotal display, ensuring the value persists after a page refresh.
 
-- **Styled Components:** 
+- **Styled Components:**
+
   - Styled Components is used for styling the UI. The button states (normal, hover, clicked) are styled with dynamic colors based on user interactions.
 
-- **Testing:** 
+- **Testing:**
   - Unit tests were written using Jest and React Testing Library to ensure components like the `ProductList`, `ProductCard`, `Header`, `LoadingErrorState`, and `HomePage` work correctly, including checking the GraphQL data, product rendering, and button clicks.
 
 ## API Documentation
@@ -63,6 +66,10 @@ Even though the app is already connected to a GraphQL endpoint, you can find all
 - [Vendure API Documentation](https://www.vendure.io/docs/graphql-api/shop/)
 
 ## Scripts
+
+### `yarn install`
+
+Installs all the dependencies required for the project.
 
 ### `yarn start`
 
