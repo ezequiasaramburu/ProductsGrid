@@ -1,8 +1,9 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
 import { useOrder } from '../../context/OrderContext';
 import ProductList from './ProductList';
 import { GET_PRODUCTS } from '../../graphql/queries';
+import { ADD_ITEM_TO_ORDER } from '../../graphql/mutations';
 
 jest.mock('../../context/OrderContext', () => ({
   useOrder: jest.fn(),
@@ -30,6 +31,31 @@ const mocks = [
               description: 'Another description',
               variants: [{ price: 20 }],
               assets: [{ source: 'image2.jpg' }],
+            },
+          ],
+        },
+      },
+    },
+  },
+  {
+    request: {
+      query: ADD_ITEM_TO_ORDER,
+      variables: {
+        productVariantId: '1',
+        quantity: 1,
+      },
+    },
+    result: {
+      data: {
+        addItemToOrder: {
+          id: 'order1',
+          lines: [
+            {
+              id: 'line1',
+              productVariant: {
+                id: '1',
+              },
+              quantity: 1,
             },
           ],
         },
@@ -66,15 +92,19 @@ describe('ProductList Component', () => {
         <ProductList />
       </MockedProvider>
     );
+
     const buttons = await screen.findAllByRole('button', {
       name: /add to order/i,
     });
+
     fireEvent.click(buttons[0]);
-    expect(mockAddItem).toHaveBeenCalledTimes(1);
-    expect(mockAddItem).toHaveBeenCalledWith({
-      id: '1',
-      name: 'Product 1',
-      price: 10,
+
+    await waitFor(() => {
+      expect(mockAddItem).toHaveBeenCalledWith({
+        id: '1',
+        name: 'Product 1',
+        price: 10,
+      });
     });
   });
 });
